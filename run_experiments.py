@@ -1,24 +1,16 @@
-# run_experiments.py
-from playwright.sync_api import sync_playwright
-from scripts.control_user import run_control_user
-from scripts.experimental_user import run_experimental_user
-import threading
+import tkinter as tk
+from scripts.window_scroller import prepare_windows, scroll_all_windows
 
-def main():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+def on_scroll():
+    prepare_windows()
+    scroll_all_windows()
 
-        # Run control and experiment in separate browser contexts
-        context_control = browser.new_context()
-        context_experiment = browser.new_context()
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.title("TikTok Scroller")
+    root.geometry("200x100")
 
-        thread_control = threading.Thread(target=run_control_user, args=(context_control,))
-        thread_experiment = threading.Thread(target=run_experimental_user, args=(context_experiment,))
+    scroll_button = tk.Button(root, text="Scroll", command=on_scroll)
+    scroll_button.pack(expand=True)
 
-        thread_control.start()
-        thread_experiment.start()
-
-        thread_control.join()
-        thread_experiment.join()
-
-        browser.close()
+    root.mainloop()
