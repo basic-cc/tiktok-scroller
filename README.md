@@ -1,16 +1,27 @@
-# TikTok Misinformation Feed Experiment
+# TikTok Scroll Experiment
 
-This project automates two simulated TikTok users scrolling through the feed to analyze how misinformation is presented based on user interaction patterns.
+## Important!
+- Make sure 4 TikTok browser windows are already open before clicking "Scroll."
+- Windows must contain "TikTok" in the title bar (case-sensitive).
+- Works with Chrome, Arc, Edge, etc., as long as window titles are matched.
+- This project simulates passive scrolling behavior across four TikTok browser windows using only GUI automation — no browser integration or code injection required.
 
-## Features
+## 🔧 How It Works
 
-- **Control Bot**: Scrolls passively through TikTok feed (no likes/interactions).
-- **Experimental Bot**: Scrolls with varied watch durations and simulated likes.
-- **Parallel Execution**: Runs both bots simultaneously using isolated browser contexts.
-- **Logging**: Supports simple timestamped logging of user actions.
+- Detects up to **4 visible TikTok browser windows**.
+- Automatically **resizes** and arranges them into equal screen quadrants.
+- On pressing the **"Scroll" button**, the script:
+  - Activates each window
+  - Moves the mouse focus
+  - Performs one downward scroll in each
 
-## Setup
+## 🖥️ Interface
 
-```bash
-pip install -r requirements.txt
-playwright install
+The program launches a minimal GUI with a single **"Scroll"** button.
+
+## 📦 Requirements
+
+```txt
+pyautogui
+pygetwindow
+tk
